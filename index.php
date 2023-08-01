@@ -24,7 +24,7 @@
     </div>
     <br>
     <br>
-    <form action="quiz.php" method="POST">
+    <form action="index.php" method="POST">
     <label class="form-label" for="form2Example1" style="width: 50%;margin-left: 25%;margin-right: 25%; color: darkcyan;">
     <h3>Escolha qual quiz voce deseja realizar: 
       <br>1- Php
@@ -34,6 +34,17 @@
         <input type="number" id="teste" class="form-control" style="width: 30%;margin-left: 35%;margin-right: 35%;" name="teste"/><br>
         <button type="submit" class="btn btn-primary btn-block mb-4" style="width: 30%;margin-left: 35%;margin-right: 35%;">Começar o Quiz</button>
       </form>
+      <?php
+      if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $cookieName = "teste";
+        $cookieValue = $_POST['teste'];
+        $expiration = time() + (100000* 30);
+        //preparo os dados do cookie
+        setcookie($cookieName, '', $expiration);//deleto o cookie se existir
+        setcookie($cookieName, $cookieValue, $expiration);//crio o cookie sobre qual é o teste
+        header('Location: quiz.php');//redireciono o usuário para realizar o quiz
+      }
+      ?>
 
   </body>
   <style>

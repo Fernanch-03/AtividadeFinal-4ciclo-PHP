@@ -10,8 +10,9 @@ include 'bootstrap.html';
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-item nav-link active" href="index.php">Home <span class="sr-only">(Página atual)</span></a>
-        <a class="nav-item nav-link" href="login.php">Login</a>
+        <a class="nav-item nav-link active" href="index.php">Página Inicial</a>
+        <a class="nav-item nav-link active" href="resultados.php">Rankings</a>
+        <?php if (!isset($_COOKIE['usuario'])) {echo'<a class="nav-item nav-link" href="login.php">Login</a>';}?>
         <a class="nav-item nav-link" ><?php 
         if (isset($_COOKIE['usuario'])) {//verifica se o cookie existe
           $cookieValue = $_COOKIE['usuario'];//aplica o valor do cookie a essa variavel
@@ -19,6 +20,8 @@ include 'bootstrap.html';
         } else {
           echo "não logado";//mostra não logado caso o usuário não esteja logado
         }?></a>
+        <?php if (isset($_COOKIE['usuario'])) {
+        echo'<a href="deslogar.php"><button type="button" class="btn btn-danger">Deslogar</button></a>';}//botão para terminar a sessão?>
       </div>
     </div>
   </nav>

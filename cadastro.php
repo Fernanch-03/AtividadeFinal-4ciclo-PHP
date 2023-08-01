@@ -55,5 +55,6 @@ include 'bootstrap.html';
       $senha = $_POST['senha'];
       $usuario = new CadastrarUsuario($nome, $email, $senha);//instancio a classe dita acima
       $usuario->registrarUsuario($usuario->nome, $usuario->email, $usuario->senha);//executo o registro da classe
+      header('Location:login.php');//redireciono o usuário ao login
     }
 ?>
